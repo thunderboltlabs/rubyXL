@@ -434,7 +434,10 @@ module RubyXL
 
     #sheet_names, dimensions
     def Parser.create_matrix(wb,i, files)
-      sheet_names = files['app'].css('TitlesOfParts vt|vector vt|lpstr').children
+      sheet_names = []
+      files['workbook'].css('sheet').each do |sheet|
+        sheet_names.push sheet.attribute('name').to_s
+      end
       sheet = Worksheet.new(wb,sheet_names[i].to_s,[])
 
       dimensions = files[i+1].css('dimension').attribute('ref').to_s
