@@ -317,7 +317,8 @@ module RubyXL
         end
       end
 
-      dir_path = File.join(File.dirname(dir_path), make_safe_name(Time.now.to_s))
+      our_name = (0...25).map{(65+rand(26)).chr}.join
+      dir_path = File.join(File.dirname(dir_path), make_safe_name(our_name))
       #copies excel file to zip file in same directory
       zip_path = dir_path + '.zip'
 
